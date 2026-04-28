@@ -1,57 +1,74 @@
 # XM Forex Position Sizer
 
-Calculadora web para traders que operan con XM y necesitan convertir un escenario de mercado en un ticket de riesgo ejecutable. La herramienta estima lote sugerido, stop loss, take profit, coste de spread, drawdown probable, expectativa y progreso hacia una meta de capital.
+Calculadora web pública para traders que operan con XM y necesitan convertir un escenario de mercado en un ticket de riesgo ejecutable. La app estima lote sugerido, stop loss, take profit, coste de spread, drawdown probable, expectativa y ritmo necesario para llegar a una meta de capital.
 
 Sitio publicado: [xmsizer.vercel.app](https://xmsizer.vercel.app/)
 
-![Vista principal](./public/preview-desktop.png)
+## Vista actual
 
-![Vista móvil](./public/preview-mobile.png)
+![Vista principal desktop](./public/preview-desktop.png)
 
-## Enfoque del proyecto
+![Vista principal móvil](./public/preview-mobile.png)
 
-- Branding unificado como `XM Forex Position Sizer` en interfaz, reporte copiable, metadatos y despliegue.
-- Diseño orientado a terminal de trading: lectura rápida, contraste alto, métricas clave arriba y acciones operativas visibles.
-- Flujo de trabajo separado por ventanas completas para `Plan de trading` y `Manual operativo`, sin modales superpuestos al dashboard.
-- Soporte para cuentas XM `micro` y `standard`.
-- Modelos base por mercado:
-  - `Forex`: referencia tipo `EURUSD`.
-  - `Metales`: referencia tipo `XAUUSD`.
-  - `Índices`: referencia tipo `US30`.
-- SEO, Open Graph, Twitter Cards, favicon, `robots.txt`, `sitemap.xml`, `manifest` y cabeceras de seguridad para Vercel.
+## Qué es esta herramienta
+
+- Es una herramienta de acceso libre, sin backend y sin registro obligatorio.
+- Usa `XM Forex Position Sizer` como marca unificada en interfaz, metadatos, Open Graph y despliegue.
+- Está orientada a cuentas XM `micro` y `standard`.
+- Trabaja con tres perfiles base de mercado:
+  - `Metales`: referencia `XAUUSD`.
+  - `Forex`: referencia `EURUSD`.
+  - `Índices`: referencia `US30`.
+- Separa la experiencia en tres capas:
+  - `Dashboard` para cálculo operativo.
+  - `Plan de trading` para fijar capital, riesgo y objetivo mensual.
+  - `Manual operativo` para explicar el uso y los errores comunes.
+- Incluye un `Directorio XM` con presentación de XM, accesos oficiales y rutas de apoyo.
 
 ## Qué calcula
 
-- Riesgo por trade en USD a partir del capital y porcentaje de riesgo.
+- Riesgo por trade en USD a partir de capital y porcentaje de riesgo.
 - Lote sugerido considerando spread estimado dentro del riesgo.
-- Stop loss y take profit desde ATR o desde un modo manual.
+- Stop loss y take profit desde `ATR adaptativo` o modo `Manual`.
 - Ratio técnico y ratio neto.
 - Coste del spread y reward neto.
-- Drawdown probable ante una racha de pérdidas.
+- Drawdown probable ante rachas de pérdidas.
 - Kelly sugerido, expectativa por trade y trades estimados para llegar a la meta.
-- Presupuesto diario de pérdida según el plan de trading guardado.
+- Presupuesto diario de pérdida según el plan guardado.
 
-## Flujo de uso actual
+## Flujo de uso
 
-1. Abre `Plan de trading` para fijar capital, riesgo base, mercado, cuenta y meta mensual.
-2. Guarda ese perfil en local y aplícalo al dashboard cuando quieras reiniciar la sesión desde una base consistente.
-3. Ajusta en el panel principal el escenario vivo: `ATR`, `spread`, modo `ATR` o `Manual`, `win rate` y objetivo de equity.
-4. Revisa ticket, analítica de supervivencia y bitácora antes de ejecutar.
-5. Usa `Manual operativo` como referencia extensa del flujo, fórmulas y errores comunes.
+1. Define el plan base en `Plan de trading`.
+2. Aplica ese perfil al dashboard para arrancar cada sesión desde una base consistente.
+3. Ajusta mercado, tipo de cuenta, `ATR`, spread, win rate y modo de cálculo.
+4. Revisa ticket, guardrails, analítica de supervivencia y bitácora.
+5. Si necesitas contexto comercial u operativo de XM, abre el `Directorio XM`.
 
-## Para quién sirve
+## Enlaces XM con código de socio
 
-### Trader principiante
+La aplicación expone estas rutas afiliadas desde [`src/lib/xmAffiliate.ts`](./src/lib/xmAffiliate.ts) bajo el código de socio `M32JB`.
 
-- Operar cuenta micro con control más fino.
-- Aprender a no sobredimensionar una posición.
-- Validar el impacto real del spread antes de abrir la orden.
+### Inicio y cuentas
 
-### Trader con más experiencia
+- [Página de inicio](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=0): entrada general a XM en español.
+- [Abrir cuenta real](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=1): ruta principal usada por la app.
+- [Abrir cuenta demo](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=5): práctica antes de fondear.
+- [Tipos de cuenta](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=2): comparativo para alinear micro o standard.
 
-- Cruzar win rate esperado con reward neto.
-- Comparar escenarios ATR vs manual.
-- Ver drawdown, expectativa y límite diario desde el mismo panel.
+### Plataformas y acceso
+
+- [Acceso usuarios](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=22): ingreso al área de usuario.
+- [MetaTrader 5 (MT5)](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=20): descarga y acceso directo a plataforma.
+- [App de XM](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=17): aplicación oficial de XM.
+- [Calculadoras forex de XM](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=14): complemento para contrastar lotaje y margen.
+
+### Aprendizaje y soporte
+
+- [Formación de trading](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=7): recursos educativos oficiales.
+- [Promociones y bonos](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=6): campañas y beneficios activos.
+- [Atención al cliente](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=18): soporte oficial de XM.
+- [Copy trading](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=3901): acceso a la oferta de copy trading.
+- [Acerca de XM](https://clicks.pipaffiliates.com/c?c=1218607&l=es&p=8): información general del broker.
 
 ## Stack real del repositorio
 
@@ -68,6 +85,7 @@ No hay backend ni variables de entorno obligatorias para correr el proyecto en l
 ```text
 .
 ├── index.html
+├── metadata.json
 ├── vercel.json
 ├── public/
 │   ├── favicon.svg
@@ -77,28 +95,38 @@ No hay backend ni variables de entorno obligatorias para correr el proyecto en l
 │   ├── robots.txt
 │   ├── site.webmanifest
 │   └── sitemap.xml
+├── scripts/
+│   └── logic-smoke.ts
 └── src/
     ├── App.tsx
     ├── components/
-    │   ├── TradingPlanWorkspace.tsx
-    │   ├── TechnicalManual.tsx
+    │   ├── Header.tsx
     │   ├── ConfigPanel.tsx
     │   ├── ResultsDisplay.tsx
     │   ├── AnalyticsPanel.tsx
-    │   └── HistoryPanel.tsx
-    ├── hooks/useRiskCalculator.ts
-    ├── lib/marketProfiles.ts
-    ├── lib/tradingPlan.ts
-    ├── lib/persistence.ts
+    │   ├── HistoryPanel.tsx
+    │   ├── XMInfoSection.tsx
+    │   ├── AffiliateSection.tsx
+    │   ├── XMDirectoryModal.tsx
+    │   ├── TradingPlanWorkspace.tsx
+    │   └── TechnicalManual.tsx
+    ├── hooks/
+    │   └── useRiskCalculator.ts
+    ├── lib/
+    │   ├── marketProfiles.ts
+    │   ├── persistence.ts
+    │   ├── tradingPlan.ts
+    │   └── xmAffiliate.ts
     └── types.ts
 ```
 
-## Lógica principal del proyecto
+## Lógica principal
 
-- `src/hooks/useRiskCalculator.ts`: convierte la configuración actual en ticket ejecutable, expectativa, drawdown y métricas de supervivencia.
-- `src/lib/tradingPlan.ts`: valida si el plan es aplicable en XM, calcula el lote estimado mínimo, genera sugerencias por mercado/cuenta y proyecta el ritmo diario de la meta.
-- `src/lib/persistence.ts`: sanitiza `config`, `plan` y `history` antes de leer o escribir en `localStorage`.
-- `src/App.tsx`: coordina persistencia, cálculo principal y navegación entre `dashboard`, `manual` y `plan`.
+- `src/hooks/useRiskCalculator.ts`: transforma la configuración actual en ticket, expectativa, drawdown y métricas de supervivencia.
+- `src/lib/tradingPlan.ts`: genera y valida el plan base según cuenta, mercado y meta mensual.
+- `src/lib/persistence.ts`: sanea `config`, `plan` y `history` antes de leer o escribir en `localStorage`.
+- `src/lib/xmAffiliate.ts`: centraliza los enlaces XM usados por la interfaz y el directorio.
+- `src/App.tsx`: coordina persistencia, navegación de vistas y apertura del `Directorio XM`.
 
 ## Persistencia local
 
@@ -108,7 +136,7 @@ La app guarda tres bloques en `localStorage`:
 - `xm_forex_sizer_plan`
 - `xm_forex_sizer_history`
 
-Cada bloque pasa por saneamiento defensivo antes de rehidratarse para evitar estados rotos o valores fuera de rango.
+Cada bloque se sanea antes de rehidratarse para evitar estados rotos o valores fuera de rango.
 
 ## Uso local
 
@@ -125,39 +153,16 @@ La app queda disponible en `http://localhost:3000` o en el siguiente puerto libr
 - `npm run lint`: chequeo TypeScript sin emitir archivos.
 - `npm run build`: build de producción.
 - `npm run preview`: vista previa del build.
-- `npm run check`: corre `lint` y `build`.
-
-## Cómo usar la calculadora
-
-1. Define el capital disponible.
-2. Selecciona cuenta `micro` o `standard`.
-3. Elige mercado: `metals`, `forex` o `indices`.
-4. Ajusta riesgo, win rate y spread.
-5. Usa `ATR adaptativo` o `Manual`.
-6. Revisa el ticket de ejecución y copia el reporte si vas a compartirlo.
-7. Guarda la sesión en bitácora si quieres comparar escenarios.
-
-## Validaciones importantes de la app
-
-- El plan de trading se evalúa contra mínimos operativos de XM antes de permitir su aplicación.
-- El progreso a meta se calcula desde el capital base del plan, no como simple proporción `capital / target`.
-- La lectura de `trades por día` distingue entre `0` trades necesarios y ausencia de expectativa positiva, para no confundir objetivo cumplido con inviabilidad.
-- Si cambias de mercado, la app recarga `ATR`, `spread`, `SL`, `TP` y `RRR` base de ese perfil antes de recalcular.
+- `npm run test:logic`: prueba rápida de la lógica principal.
+- `npm run check`: ejecuta `lint` y `build`.
 
 ## Supuestos importantes
 
 - Los cálculos son un modelo operativo, no una promesa de resultados.
 - `Forex` está orientado a pares principales cotizados en USD.
 - `Metales` usa como referencia `XAUUSD`.
-- `Índices` usa un modelo conservador y requiere validar el valor por punto del símbolo real en XM.
+- `Índices` usan un modelo conservador y requieren validar el valor por punto del símbolo real en XM.
 - Si cambian spread, volatilidad o estructura del instrumento, vuelve a calcular antes de entrar.
-
-## Recomendaciones operativas
-
-- Para aprendizaje, empieza en cuenta micro y riesgo de `0.5%` a `1.0%`.
-- Usa el win rate como dato estadístico propio, no como intuición.
-- Si el ratio neto sale débil, no fuerces la operación cambiando el lote.
-- Guarda la sesión antes de ejecutar y compárala con el resultado real después.
 
 ## Licencia y atribución
 
