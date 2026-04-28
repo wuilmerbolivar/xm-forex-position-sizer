@@ -1,0 +1,6 @@
+{
+  "name": "XM Forex Position Sizer",
+  "description": "Calculadora profesional de lotaje, riesgo, drawdown y expectativa para traders que operan con XM en cuentas micro y standard.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

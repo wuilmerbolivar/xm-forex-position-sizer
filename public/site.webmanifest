@@ -1,0 +1,9 @@
+{
+  "name": "XM Forex Position Sizer",
+  "short_name": "XM Sizer",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1117",
+  "theme_color": "#0b1117",
+  "description": "Calculadora profesional de lotaje, riesgo y drawdown para traders de XM."
+}
