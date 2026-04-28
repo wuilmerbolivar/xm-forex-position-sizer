@@ -94,7 +94,7 @@ export function ConfigPanel({ config, updateConfig, results, plan, profile }: Co
             </label>
             <div className="grid grid-cols-3 gap-2.5">
               {([
-                { value: 'metals', label: 'Oro' },
+                { value: 'metals', label: 'Metales' },
                 { value: 'forex', label: 'Forex' },
                 { value: 'indices', label: 'Indices' },
               ] as const).map((market) => (

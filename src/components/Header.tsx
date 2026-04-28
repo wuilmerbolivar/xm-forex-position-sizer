@@ -1,6 +1,7 @@
 import { BookOpen, CandlestickChart, ClipboardList, MessageCircle, ShieldCheck, Target } from 'lucide-react';
 import type { AppConfig, CalculationResults } from '../types';
 import type { MarketProfile } from '../lib/marketProfiles';
+import { XM_ASSOCIATE_CODE, XM_AFFILIATE_LINKS } from '../lib/xmAffiliate';
 
 interface HeaderProps {
   config: AppConfig;
@@ -44,25 +45,30 @@ export function Header({ config, results, profile, onOpenManual, onOpenPlan }: H
               XM Forex Position Sizer para lotaje, drawdown y ejecucion disciplinada.
             </h1>
             <p className="max-w-2xl text-[13px] leading-7 text-[var(--text-secondary)] md:text-[15px]">
-              Calculadora profesional para XM enfocada en XAUUSD, Forex e indices. Convierte riesgo porcentual,
+              Calculadora profesional para XM enfocada en Metales, Forex e indices. Convierte riesgo porcentual,
               volatilidad ATR y spread en una posicion ejecutable, con lectura clara para traders principiantes y
               operadores con plan avanzado.
             </p>
           </div>
 
           <div className="max-w-2xl rounded-[1.3rem] border border-[var(--accent-amber)]/25 bg-[linear-gradient(135deg,rgba(247,185,85,0.14),rgba(247,185,85,0.05))] p-4">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--accent-amber)]">Bono XM para nuevas cuentas</p>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--accent-amber)]">Acceso XM con asociado</p>
+              <span className="rounded-full border border-[var(--accent-amber)]/25 bg-black/18 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
+                Codigo {XM_ASSOCIATE_CODE}
+              </span>
+            </div>
             <div className="mt-2 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
               <p className="text-[13px] leading-6 text-[var(--text-secondary)]">
-                Si abres tu cuenta XM con este enlace de referido puedes recibir el bono disponible de <span className="font-semibold text-white">$30</span> y quedar identificado para soporte.
+                La ruta principal para abrir cuenta real ahora aplica tu asociado <span className="font-semibold text-white">{XM_ASSOCIATE_CODE}</span> y deja el flujo listo para continuar con soporte, promociones y accesos oficiales de XM.
               </p>
               <a
-                href="https://www.xmglobal.com/referral?token=M2_3lRF5_nQchoRj09mZeQ"
+                href={XM_AFFILIATE_LINKS.realAccount.href}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-xl bg-[var(--accent-amber)] px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--bg-primary)] transition-transform hover:-translate-y-0.5"
               >
-                Abrir cuenta XM
+                Abrir cuenta real
               </a>
             </div>
           </div>

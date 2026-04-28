@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { MessageCircle } from 'lucide-react';
 import { AppConfig, TradingPlan, TradeSession } from './types';
 import { useRiskCalculator } from './hooks/useRiskCalculator';
 import { Header } from './components/Header';
@@ -13,6 +12,7 @@ import { Footer } from './components/Footer';
 import { TechnicalManual } from './components/TechnicalManual';
 import { TradingPlanWorkspace } from './components/TradingPlanWorkspace';
 import { HistoryPanel } from './components/HistoryPanel';
+import { XMDirectoryModal } from './components/XMDirectoryModal';
 import { MARKET_PROFILES, getMarketDefaults } from './lib/marketProfiles';
 import {
   getDefaultConfig,
@@ -32,6 +32,7 @@ type WorkspaceView = 'dashboard' | 'manual' | 'plan';
 
 export default function App() {
   const [activeView, setActiveView] = useState<WorkspaceView>('dashboard');
+  const [isXmDirectoryOpen, setXmDirectoryOpen] = useState(false);
 
   const [history, setHistory] = useState<TradeSession[]>(() =>
     readLocalJson(HISTORY_KEY, sanitizeHistory, []),
@@ -138,6 +139,7 @@ export default function App() {
               profile={currentProfile}
               onClose={() => setActiveView('dashboard')}
               onOpenPlan={() => setActiveView('plan')}
+              onOpenDirectory={() => setXmDirectoryOpen(true)}
             />
           </div>
         ) : activeView === 'plan' ? (
@@ -196,7 +198,7 @@ export default function App() {
                 />
 
                 <XMInfoSection profile={currentProfile} />
-                <AffiliateSection />
+                <AffiliateSection onOpenDirectory={() => setXmDirectoryOpen(true)} />
               </section>
             </main>
           </div>
@@ -205,18 +207,7 @@ export default function App() {
         <Footer profile={currentProfile} />
       </div>
 
-      <a
-        href="https://wa.me/51987435331?text=Hola,%20necesito%20ayuda%20para%20empezar%20en%20XM."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group fixed bottom-3 right-3 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-[#2bd67b]/24 bg-[#11251d]/95 text-[#7ef0af] shadow-[0_18px_45px_rgba(13,24,18,0.5)] transition-all hover:-translate-y-0.5 hover:border-[#2bd67b]/40 sm:bottom-4 sm:right-4 sm:h-14 sm:w-14"
-        aria-label="Contactar por WhatsApp"
-      >
-        <MessageCircle size={22} />
-        <span className="pointer-events-none absolute right-16 hidden whitespace-nowrap rounded-full border border-[#2bd67b]/18 bg-[#11251d]/95 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-[#7ef0af] opacity-0 transition-opacity group-hover:opacity-100 lg:block">
-          Soporte
-        </span>
-      </a>
+      <XMDirectoryModal isOpen={isXmDirectoryOpen} onClose={() => setXmDirectoryOpen(false)} />
     </div>
   );
 }

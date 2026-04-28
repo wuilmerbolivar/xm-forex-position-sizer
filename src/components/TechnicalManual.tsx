@@ -1,6 +1,7 @@
 import { ArrowLeft, BookOpen, ClipboardList, ExternalLink, ShieldAlert, ShieldCheck } from 'lucide-react';
 import type { MarketProfile } from '../lib/marketProfiles';
 import { getPlanTargetSnapshot } from '../lib/tradingPlan';
+import { XM_ASSOCIATE_CODE, XM_AFFILIATE_LINKS } from '../lib/xmAffiliate';
 import type { AppConfig, CalculationResults, TradingPlan } from '../types';
 
 interface TechnicalManualProps {
@@ -10,6 +11,7 @@ interface TechnicalManualProps {
   profile: MarketProfile;
   onClose: () => void;
   onOpenPlan: () => void;
+  onOpenDirectory: () => void;
 }
 
 const INPUT_GUIDE = [
@@ -66,7 +68,7 @@ const EXECUTION_ERRORS = [
   'Confundir progreso a meta con aumento de lotaje y no con consistencia.',
 ] as const;
 
-export function TechnicalManual({ config, plan, results, profile, onClose, onOpenPlan }: TechnicalManualProps) {
+export function TechnicalManual({ config, plan, results, profile, onClose, onOpenPlan, onOpenDirectory }: TechnicalManualProps) {
   const modeLabel = config.calcMode === 'atr' ? 'ATR adaptativo' : 'Manual';
   const riskTone = results.isHighRisk ? 'border-rose-400/25 bg-rose-400/10' : 'border-emerald-400/20 bg-emerald-400/10';
   const riskText = results.isHighRisk
@@ -141,21 +143,45 @@ export function TechnicalManual({ config, plan, results, profile, onClose, onOpe
           </article>
 
           <article className="rounded-[1.75rem] border border-[var(--accent-amber)]/25 bg-[linear-gradient(135deg,rgba(247,185,85,0.14),rgba(247,185,85,0.05))] p-6">
-            <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--accent-amber)]">Bono XM con referido</p>
-            <h3 className="mt-3 text-xl font-semibold text-white">Si abres tu cuenta XM con este enlace puedes acceder al bono promocional de $30.</h3>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-[var(--accent-amber)]">Ruta XM con asociado</p>
+              <span className="rounded-full border border-[var(--accent-amber)]/20 bg-black/12 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white">
+                {XM_ASSOCIATE_CODE}
+              </span>
+            </div>
+            <h3 className="mt-3 text-xl font-semibold text-white">Cuenta real, soporte y recursos oficiales sin salir del referido.</h3>
             <p className="mt-4 text-sm leading-7 text-[var(--text-secondary)]">
-              Mantener este enlace visible ayuda a incentivar aperturas con tu referido y da contexto al usuario sobre
-              por que conviene usar el flujo correcto desde el principio.
+              La cuenta real sigue accesible desde aqui, pero el directorio completo de XM vive ahora en un panel
+              dedicado para no repetir enlaces por toda la experiencia.
             </p>
-            <a
-              href="https://www.xmglobal.com/referral?token=M2_3lRF5_nQchoRj09mZeQ"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-2xl bg-[var(--accent-amber)] px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--bg-primary)] transition-transform hover:-translate-y-0.5"
-            >
-              Crear cuenta XM
-              <ExternalLink size={14} />
-            </a>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <a
+                href={XM_AFFILIATE_LINKS.realAccount.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-2xl bg-[var(--accent-amber)] px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-[var(--bg-primary)] transition-transform hover:-translate-y-0.5"
+              >
+                Abrir cuenta real
+                <ExternalLink size={14} />
+              </a>
+              <button
+                onClick={onOpenDirectory}
+                className="inline-flex items-center gap-2 rounded-2xl border border-[var(--border-strong)] bg-black/14 px-5 py-3 text-xs font-semibold uppercase tracking-[0.22em] text-white transition-colors hover:border-[var(--accent-primary)] hover:text-[var(--accent-primary)]"
+              >
+                Abrir directorio XM
+                <BookOpen size={14} />
+              </button>
+            </div>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              {[
+                'Cuenta real, demo, plataformas y acceso de usuario desde un solo panel.',
+                'Promociones, formacion, copy trading y soporte oficial sin duplicar tarjetas en la pagina.',
+              ].map((text) => (
+                <div key={text} className="rounded-[1.3rem] border border-[var(--border-muted)] bg-black/12 p-4">
+                  <p className="text-sm leading-7 text-[var(--text-secondary)]">{text}</p>
+                </div>
+              ))}
+            </div>
           </article>
         </section>
 
